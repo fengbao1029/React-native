@@ -1,0 +1,3 @@
+rootProject.name = 'CQQLoginDemo'
+
+include ':app'
