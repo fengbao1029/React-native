@@ -10,27 +10,70 @@ import {
   StyleSheet,
   Text,
   View,
-  TouchableOpacity
+  TouchableOpacity,
+  AlertIOS
 } from 'react-native';
 
-export default class DTouchableDemo extends Component {
+
+//ES5写法
+var DTouchableDemo;
+DTouchableDemo = React.createClass({
+
+    //不可改变的值
+    getDefaultProps() {
+        return {
+            age: '18'
+        }
+    },
+    //可改变的值
+    getInitialState() {
+        return {
+            title: '不透明触摸',
+            person: '张三'
+        }
+    },
+
     render() {
         return (
-            <View style={styles.container} onPress={this.renderPress()}>
-                <TouchableOpacity activeOpacity={0.5}>
+            <View ref="topView" style={styles.container}>
+                <TouchableOpacity activeOpacity={0.5}
+                                  onPress={() => this.activeEvent('点击')}
+                                  onPressIn={() => this.activeEvent('按下')}
+                                  onPressOut={() => this.activeEvent('抬起')}
+                                  onLongPress={() => this.activeEvent('长按')}
+                >
                     <View style={styles.innerViewStyle}>
-                        <Text>我是文本，但是可以点击</Text>
+                        <Text ref="event">常用的事件</Text>
                     </View>
                 </TouchableOpacity>
+                <View>
+                    <Text>{this.state.title}</Text>
+                    <Text>{this.state.person}</Text>
+                    <Text>{this.props.age}</Text>
+                </View>
             </View>
         );
+
+    },
+
+    activeEvent(event) {
+        //更新状态机
+        this.setState({
+            title: event,
+            person: '李四'
+        })
+
+        //拿到view
+        this.refs.topView;
+        this.refs.event
     }
 
-    //当按下鼠标
-    renderPress(){
-        console.log('按下鼠标');
-    }
-}
+});
+
+//ES6写法
+//  class DTouchableDemo extends Component {
+//
+// }
 
 const styles = StyleSheet.create({
   container: {
