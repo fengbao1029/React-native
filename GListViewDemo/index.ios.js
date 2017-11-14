@@ -11,7 +11,9 @@ import {
   Text,
   View,
   Image,
-  ListView
+  ListView,
+  TouchableOpacity,
+  AlertIOS
 } from 'react-native';
 
 var Dimensions = require('Dimensions');
@@ -44,17 +46,19 @@ var GListViewDemo = React.createClass({
     renderRow(rowData,sectionID,rowID,highlightRow) {
          // console.log(rowData,sectionID,rowID)
         return (
-            <View style={styles.cellViewStyle}>
-                {/*左边的图片*/}
-                <Image source={{uri:rowData.image}} style={styles.leftImageStyle}/>
-                {/*右边的View*/}
+            <TouchableOpacity activeOpacity={0.5} onPress={()=>{AlertIOS.alert('点击了'+ rowID + '行')}}>
                 <View style={styles.cellViewStyle}>
-                    {/*上边的text*/}
-                    <Text style={styles.topTitleStyle}>{rowData.name}</Text>
-                    {/*下边的text*/}
-                    <Text style={styles.bottomTitleStyle}>¥{rowData.money}</Text>
+                    {/*左边的图片*/}
+                    <Image source={{uri:rowData.image}} style={styles.leftImageStyle}/>
+                    {/*右边的View*/}
+                    <View style={styles.rightViewStyle}>
+                        {/*上边的text*/}
+                        <Text style={styles.topTitleStyle}>{rowData.name}</Text>
+                        {/*下边的text*/}
+                        <Text style={styles.bottomTitleStyle}>¥{rowData.money}</Text>
+                    </View>
                 </View>
-            </View>
+            </TouchableOpacity>
 
         );
     }
@@ -63,14 +67,29 @@ var GListViewDemo = React.createClass({
 
 const styles = StyleSheet.create({
     cellViewStyle:{
-        backgroundColor:'#e8e8e8'
+        padding:10,
+        backgroundColor:'white',
+        //下划线
+        borderBottomWidth:0.5,
+        borderBottomColor:'#e8e8e8',
+        //确定主轴方向
+        flexDirection:'row'
+
+    },
+    rightViewStyle:{
+        //主轴对齐方式
+        justifyContent:'center'
     },
     leftImageStyle:{
         width:60,
-        height:60
+        height:60,
+        marginRight:10
     },
     topTitleStyle:{
-
+        color:'red',
+        fontSize:15,
+        width:width * 0.7,
+        marginBottom:8
     },
     bottomTitleStyle:{
 
