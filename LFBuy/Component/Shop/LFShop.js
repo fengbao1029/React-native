@@ -23,7 +23,9 @@ var Shop = React.createClass({
                 <Text style={styles.welcome}>
                     更多
                 </Text>
-                {/*<Image source={require('./40.png')} style={styles.imgStyle}/>*/}
+                <Image source={{uri:'icon_tabbar_homepage'}} style={styles.imgStyle}/>
+                {/*<Image source={require('../Img/aaaaaa.png')} style={styles.imgStyle}/>*/}
+                <Text> 头疼</Text>
             </View>
         );
     }
@@ -44,7 +46,7 @@ const styles = StyleSheet.create({
     },
     imgStyle:{
         width:40,
-        height:40
+        height:40,
     }
 });
 
