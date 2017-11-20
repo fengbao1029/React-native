@@ -16,22 +16,20 @@ import {
 } from 'react-native';
 
 
-var Shop = React.createClass({
+var More = React.createClass({
     render() {
-        return(
+        return (
             <View style={styles.container}>
                 <Text style={styles.welcome}>
-                    更多
+                    安卓启动图
                 </Text>
-                <Image source={require('../../Img/aaaaaa.png')} style={styles.imgStyle}/>
-                <Text> 头疼</Text>
             </View>
         );
     }
 });
 
 
-const styles = StyleSheet.create({
+const Launch = StyleSheet.create({
     container: {
         flex: 1,
         justifyContent: 'center',
@@ -42,12 +40,8 @@ const styles = StyleSheet.create({
         fontSize: 20,
         textAlign: 'center',
         margin: 10,
-    },
-    imgStyle:{
-        width:40,
-        height:40,
     }
 });
 
 // 输出组件类
-module.exports = Shop;
+module.exports = Launch;
